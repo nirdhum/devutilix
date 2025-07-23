@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 import SearchBar from "./components/common/SearchBar";
 import UtilityCard from "./components/common/UtilityCard";
 import { utilities } from "./data/utilities";
@@ -209,6 +210,8 @@ function App() {
             </div>
           )}
         </main>
+
+        <Footer />
       </div>
     </ThemeProvider>
   );
