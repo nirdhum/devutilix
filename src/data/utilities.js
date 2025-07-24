@@ -214,6 +214,22 @@ export const utilities = [
   category: 'Text Processing',
   tags: ['markdown', 'md', 'preview', 'editor', 'html', 'documentation', 'readme'],
   component: 'MarkdownPreview'
+},
+{
+  id: 'sql-formatter',
+  title: 'SQL Formatter',
+  description: 'Format, beautify and validate SQL queries with syntax highlighting for multiple database types',
+  category: 'Development',
+  tags: ['sql', 'format', 'query', 'database', 'mysql', 'postgresql', 'beautify', 'validate'],
+  component: 'SQLFormatter'
+},
+{
+  id: 'image-optimizer',
+  title: 'Image Optimizer',
+  description: 'Compress and optimize images while maintaining quality with format conversion support',
+  category: 'Images',
+  tags: ['image', 'optimizer', 'compress', 'resize', 'quality', 'jpeg', 'png', 'webp'],
+  component: 'ImageOptimizer'
 }
 
 
