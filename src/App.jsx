@@ -7,6 +7,8 @@ import UtilityCard from "./components/common/UtilityCard";
 import { utilities } from "./data/utilities";
 import { useSearch } from "./hooks/useSearch";
 
+const totalUtilities = utilities.length;
+
 // Lazy load utility components
 const utilityComponents = {};
 utilities.forEach((utility) => {
@@ -122,7 +124,7 @@ function App() {
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {query
                       ? `Search Results (${results.length})`
-                      : "All Utilities"}
+                      : `All Utilities (${totalUtilities})`}
                   </h2>
                   {query && (
                     <button
