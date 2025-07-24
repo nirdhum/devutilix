@@ -198,9 +198,15 @@ export const utilities = [
   category: 'Generation',
   tags: ['qr', 'code', 'generator', 'barcode', 'scan', 'mobile', 'wifi', 'url'],
   component: 'QRCodeGenerator'
+},
+{
+  id: 'xml-formatter',
+  title: 'XML Formatter',
+  description: 'Format, validate, and beautify XML documents with syntax highlighting',
+  category: 'Data',
+  tags: ['xml', 'format', 'validate', 'prettify', 'minify', 'data', 'markup'],
+  component: 'XMLFormatter'
 }
-
-
 
 ];
 
