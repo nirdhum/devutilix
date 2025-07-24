@@ -166,7 +166,32 @@ export const utilities = [
   category: 'Encoding',
   tags: ['html', 'encode', 'decode', 'entities', 'escape', 'web', 'xss'],
   component: 'HTMLEncodeDecoder'
+  },
+  {
+  id: 'password-generator',
+  title: 'Password Generator',
+  description: 'Generate secure passwords with customizable length and character sets',
+  category: 'Security',
+  tags: ['password', 'security', 'random', 'generator', 'authentication', 'strong'],
+  component: 'PasswordGenerator'
+  },
+  {
+  id: 'text-case-converter',
+  title: 'Text Case Converter',
+  description: 'Convert text between different cases: uppercase, lowercase, camelCase, PascalCase, and more',
+  category: 'Text Processing',
+  tags: ['text', 'case', 'convert', 'uppercase', 'lowercase', 'camelcase', 'pascal', 'snake', 'kebab'],
+  component: 'TextCaseConverter'
+  },
+  {
+  id: 'json-formatter',
+  title: 'JSON Formatter / Validator',
+  description: 'Validate, prettify, minify and inspect JSON',
+  category: 'Data',
+  tags: ['json', 'format', 'validate', 'prettify', 'minify', 'data'],
+  component: 'JSONFormatter'
 }
+
 
 ];
 
