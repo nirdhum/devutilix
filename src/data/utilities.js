@@ -190,7 +190,16 @@ export const utilities = [
   category: 'Data',
   tags: ['json', 'format', 'validate', 'prettify', 'minify', 'data'],
   component: 'JSONFormatter'
+},
+{
+  id: 'qr-code-generator',
+  title: 'QR Code Generator',
+  description: 'Generate customizable QR codes for URLs, text, WiFi, contact info and more',
+  category: 'Generation',
+  tags: ['qr', 'code', 'generator', 'barcode', 'scan', 'mobile', 'wifi', 'url'],
+  component: 'QRCodeGenerator'
 }
+
 
 
 ];
