@@ -150,6 +150,14 @@ export const utilities = [
     category: 'DevOps',
     tags: ['env', 'toml', 'netlify', 'environment'],
     component: 'ENVTOMLConverter'
+  },
+  {
+  id: 'url-encode-decode',
+  title: 'URL Encode/Decode',
+  description: 'Encode and decode URLs and query parameters for web development',
+  category: 'Encoding',
+  tags: ['url', 'encode', 'decode', 'web', 'query', 'parameters'],
+  component: 'URLEncodeDecoder'
   }
 ];
 
