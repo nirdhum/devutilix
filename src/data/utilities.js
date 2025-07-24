@@ -206,7 +206,16 @@ export const utilities = [
   category: 'Data',
   tags: ['xml', 'format', 'validate', 'prettify', 'minify', 'data', 'markup'],
   component: 'XMLFormatter'
+},
+{
+  id: 'markdown-preview',
+  title: 'Markdown Preview',
+  description: 'Live markdown editor with real-time preview and export options',
+  category: 'Text Processing',
+  tags: ['markdown', 'md', 'preview', 'editor', 'html', 'documentation', 'readme'],
+  component: 'MarkdownPreview'
 }
+
 
 ];
 
