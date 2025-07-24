@@ -158,7 +158,16 @@ export const utilities = [
   category: 'Encoding',
   tags: ['url', 'encode', 'decode', 'web', 'query', 'parameters'],
   component: 'URLEncodeDecoder'
-  }
+  },
+  {
+  id: 'html-encode-decode',
+  title: 'HTML Encode/Decode',
+  description: 'Encode and decode HTML entities and special characters for web development',
+  category: 'Encoding',
+  tags: ['html', 'encode', 'decode', 'entities', 'escape', 'web', 'xss'],
+  component: 'HTMLEncodeDecoder'
+}
+
 ];
 
 export const categories = [...new Set(utilities.map(u => u.category))];
