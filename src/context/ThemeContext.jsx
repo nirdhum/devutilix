@@ -40,7 +40,7 @@ export const ThemeProvider = ({ children }) => {
     // Force browser repaint
     root.offsetHeight;
 
-    console.log("Theme applied:", theme, "HTML classes:", root.className);
+    // console.log("Theme applied:", theme, "HTML classes:", root.className);
   }, [theme]);
 
   return (

@@ -3,12 +3,12 @@ import { useTheme } from "../../context/useTheme";
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
-  console.log("Current theme:", theme); // Debug log
+  // console.log("Current theme:", theme); // Debug log
 
   return (
     <button
       onClick={() => {
-        console.log("Theme toggle clicked"); // Debug log
+        // console.log("Theme toggle clicked"); // Debug log
         toggleTheme();
       }}
       className="
