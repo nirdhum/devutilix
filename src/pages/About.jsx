@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { utilities } from "../data/utilities"; // ✅ Import your actual data
+import { utilities } from "../data/utilities";
 
 const About = () => {
   // ✅ Get ACTUAL categories from your utilities.js data
@@ -261,7 +261,7 @@ const About = () => {
 
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="https://github.com/nirdhum/developer-utilities"
+            href="https://github.com/nirdhum"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"

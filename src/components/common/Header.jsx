@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { utilities } from "../../data/utilities";
 
 const Header = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const totalUtilities = utilities.length; // 31
 
   const handleLogoClick = () => {
     window.open("https://veridicuslab.com", "_blank");
@@ -15,11 +18,16 @@ const Header = () => {
     if (isMobileMenuOpen) {
       // Closing animation
       setIsMenuVisible(false);
-      setTimeout(() => setIsMobileMenuOpen(false), 300); // Wait for animation to complete
+      setTimeout(() => setIsMobileMenuOpen(false), 300);
     } else {
       // Opening animation
       setIsMobileMenuOpen(true);
-      setTimeout(() => setIsMenuVisible(true), 10); // Small delay to ensure DOM is ready
+      // Use requestAnimationFrame to ensure the element is painted before starting animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsMenuVisible(true);
+        });
+      });
     }
   };
 
@@ -144,7 +152,7 @@ const Header = () => {
         <div className="fixed inset-0 z-40 md:hidden">
           {/* Backdrop with smooth fade */}
           <div
-            className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+            className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ease-out ${
               isMenuVisible ? "opacity-100" : "opacity-0"
             }`}
             onClick={closeMobileMenu}
@@ -152,10 +160,10 @@ const Header = () => {
 
           {/* Slide-out Menu with smooth slide and fade */}
           <div
-            className={`mobile-menu-container fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transition-all duration-300 ease-in-out ${
+            className={`mobile-menu-container fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transform transition-all duration-300 ease-in-out ${
               isMenuVisible
-                ? "transform translate-x-0 opacity-100"
-                : "transform translate-x-full opacity-95"
+                ? "translate-x-0 opacity-100"
+                : "translate-x-full opacity-0"
             }`}
           >
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
@@ -187,17 +195,17 @@ const Header = () => {
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 hover:scale-105 ${
                   location.pathname === "/"
-                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 scale-105"
-                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105"
-                } ${
+                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
+                } transform transition-all duration-300 ease-out ${
                   isMenuVisible
-                    ? "transform translate-x-0 opacity-100"
-                    : "transform translate-x-4 opacity-0"
-                } transition-all duration-300 delay-75`}
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
                 style={{
-                  transitionDelay: isMenuVisible ? "75ms" : "0ms",
+                  transitionDelay: isMenuVisible ? "100ms" : "0ms",
                 }}
               >
                 <span className="text-xl">🛠️</span>
@@ -207,17 +215,17 @@ const Header = () => {
               <Link
                 to="/about"
                 onClick={closeMobileMenu}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 hover:scale-105 ${
                   location.pathname === "/about"
-                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 scale-105"
-                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105"
-                } ${
+                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
+                } transform transition-all duration-300 ease-out ${
                   isMenuVisible
-                    ? "transform translate-x-0 opacity-100"
-                    : "transform translate-x-4 opacity-0"
-                } transition-all duration-300 delay-150`}
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
                 style={{
-                  transitionDelay: isMenuVisible ? "150ms" : "0ms",
+                  transitionDelay: isMenuVisible ? "200ms" : "0ms",
                 }}
               >
                 <span className="text-xl">ℹ️</span>
@@ -226,14 +234,17 @@ const Header = () => {
 
               {/* Optional: Add a divider and extra info */}
               <div
-                className={`pt-4 mt-4 border-t border-gray-200 dark:border-gray-600 ${
+                className={`pt-4 mt-4 border-t border-gray-200 dark:border-gray-600 transform transition-all duration-300 ease-out ${
                   isMenuVisible
-                    ? "transform translate-x-0 opacity-100"
-                    : "transform translate-x-4 opacity-0"
-                } transition-all duration-300 delay-200`}
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isMenuVisible ? "300ms" : "0ms",
+                }}
               >
                 <div className="text-center text-xs text-gray-500 dark:text-gray-400">
-                  <p>31 Developer Utilities</p>
+                  <p>{totalUtilities} Developer Utilities</p>
                   <p className="mt-1">Built with ❤️ for developers</p>
                 </div>
               </div>
