@@ -10,9 +10,9 @@ const Header = () => {
 
   const totalUtilities = utilities.length; // 31
 
-  const handleLogoClick = () => {
-    window.open("https://veridicuslab.com", "_blank");
-  };
+  // const handleLogoClick = () => {
+  //   window.open("https://veridicuslab.com", "_blank");
+  // };
 
   const toggleMobileMenu = () => {
     if (isMobileMenuOpen) {
@@ -68,8 +68,8 @@ const Header = () => {
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
               <div
-                className="flex items-center space-x-0 cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={handleLogoClick}
+                className="flex items-center space-x-0 "
+                // onClick={handleLogoClick}
               >
                 <div className="w-10 h-10 flex items-center justify-center">
                   <img
