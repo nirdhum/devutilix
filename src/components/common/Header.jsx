@@ -1,10 +1,11 @@
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
+  const location = useLocation();
+
   const handleLogoClick = () => {
     window.open("https://veridicuslab.com", "_blank"); // Opens in new tab
-    // OR
-    // window.location.href = 'https://your-website.com'; // Same tab
   };
 
   return (
@@ -29,9 +30,58 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
+            {/* ✅ Navigation Links */}
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link
+                to="/"
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === "/"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Utilities
+              </Link>
+              <Link
+                to="/about"
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === "/about"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                About
+              </Link>
+            </nav>
+
+            {/* ✅ Mobile Navigation (Optional) */}
+            <nav className="md:hidden flex items-center space-x-4">
+              <Link
+                to="/"
+                className={`text-xs font-medium transition-colors ${
+                  location.pathname === "/"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                Tools
+              </Link>
+              <Link
+                to="/about"
+                className={`text-xs font-medium transition-colors ${
+                  location.pathname === "/about"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                About
+              </Link>
+            </nav>
+
             <ThemeToggle />
 
+            {/* Uncomment if you want GitHub link */}
             {/* <a
               href="https://github.com/nirdhum"
               target="_blank"

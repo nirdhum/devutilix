@@ -1,9 +1,28 @@
 import { Link } from "react-router-dom";
+import { utilities } from "../data/utilities"; // ✅ Import your actual data
 
 const About = () => {
+  // ✅ Get ACTUAL categories from your utilities.js data
+  const actualCategories = [...new Set(utilities.map((u) => u.category))];
+  const totalUtilities = utilities.length; // 31
+  const totalCategories = actualCategories.length; // 13
+
+  // ✅ Build categories display from REAL data
+  const categoriesDisplay = actualCategories.map((categoryName) => {
+    const categoryUtilities = utilities.filter(
+      (u) => u.category === categoryName
+    );
+    return {
+      name: categoryName,
+      count: categoryUtilities.length,
+      tools: categoryUtilities.map((u) => u.title),
+    };
+  });
+
+  // ✅ Dynamic stats using REAL numbers
   const stats = [
-    { label: "Total Utilities", value: "31", icon: "🛠️" },
-    { label: "Categories", value: "9", icon: "📁" },
+    { label: "Total Utilities", value: totalUtilities.toString(), icon: "🛠️" },
+    { label: "Categories", value: totalCategories.toString(), icon: "📁" },
     { label: "Modern React", value: "100%", icon: "⚛️" },
     { label: "Open Source", value: "MIT", icon: "📜" },
   ];
@@ -11,14 +30,13 @@ const About = () => {
   const features = [
     {
       title: "Complete Developer Toolkit",
-      description:
-        "31 comprehensive utilities covering data conversion, security, image processing, encoding, web development, and more.",
+      description: `${totalUtilities} comprehensive utilities covering data conversion, security, image processing, encoding, web development, and more.`,
       icon: "🎯",
     },
     {
       title: "Modern Architecture",
       description:
-        "Built with React 18, modern hooks, TypeScript-ready components, and following current best practices.",
+        "Built with React 19, modern hooks, TypeScript-ready components, and following current best practices.",
       icon: "🏗️",
     },
     {
@@ -47,87 +65,18 @@ const About = () => {
     },
   ];
 
-  const categories = [
-    {
-      name: "Data Conversion",
-      count: 4,
-      tools: [
-        "CSV/JSON Converter",
-        "YAML/JSON Converter",
-        "Query String Parser",
-        "ENV/TOML Converter",
-      ],
-    },
-    {
-      name: "Security & Auth",
-      count: 3,
-      tools: ["Hash Generator", "JWT Parser", "Password Generator"],
-    },
-    {
-      name: "Image Processing",
-      count: 4,
-      tools: [
-        "Image Resizer",
-        "Base64 Image Converter",
-        "SVG Viewer",
-        "Image Optimizer",
-      ],
-    },
-    {
-      name: "Encoding/Decoding",
-      count: 3,
-      tools: ["Base64 Encoder", "URL Encoder", "HTML Encoder"],
-    },
-    {
-      name: "Web Development",
-      count: 4,
-      tools: [
-        "HAR File Viewer",
-        "Regex Tester",
-        "QR Code Generator",
-        "SQL Formatter",
-      ],
-    },
-    {
-      name: "CSS & Design",
-      count: 3,
-      tools: ["CSS Inliner", "CSS Units Converter", "HEX/RGB Converter"],
-    },
-    {
-      name: "Data Formatting",
-      count: 3,
-      tools: ["JSON Formatter", "XML Formatter", "Markdown Preview"],
-    },
-    {
-      name: "Mathematical",
-      count: 2,
-      tools: ["Number Base Converter", "Scientific Calculator"],
-    },
-    {
-      name: "Generation & Text",
-      count: 5,
-      tools: [
-        "UUID Generator",
-        "Lorem Ipsum",
-        "Text Case Converter",
-        "ASCII Art Generator",
-        "Lorem Ipsum Generator",
-      ],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto px-4 min-h-screen flex items-center justify-center pt-16">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Developer Utilities Suite
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              The most comprehensive collection of developer tools - 31
-              utilities in one platform
+              The most comprehensive collection of developer tools -{" "}
+              {totalUtilities} utilities in one platform
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
@@ -210,12 +159,13 @@ const About = () => {
             Complete Tool Categories
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            31 carefully crafted utilities organized into 9 essential categories
+            {totalUtilities} carefully crafted utilities organized into{" "}
+            {totalCategories} essential categories
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {categoriesDisplay.map((category, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
@@ -225,17 +175,17 @@ const About = () => {
                   {category.name}
                 </h3>
                 <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">
-                  {category.count} tools
+                  {category.count} tool{category.count !== 1 ? "s" : ""}
                 </span>
               </div>
               <ul className="space-y-2">
                 {category.tools.map((tool, toolIndex) => (
                   <li
                     key={toolIndex}
-                    className="text-sm text-gray-600 dark:text-gray-400 flex items-center"
+                    className="text-sm text-gray-600 dark:text-gray-400 flex items-start"
                   >
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    {tool}
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                    <span className="line-clamp-2">{tool}</span>
                   </li>
                 ))}
               </ul>
@@ -257,11 +207,11 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-4xl mb-2">⚛️</div>
               <h3 className="font-semibold text-gray-900 dark:text-white">
-                React 18
+                React 19
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Modern hooks & components
@@ -276,7 +226,7 @@ const About = () => {
                 Responsive design system
               </p>
             </div>
-            <div>
+            {/* <div>
               <div className="text-4xl mb-2">📱</div>
               <h3 className="font-semibold text-gray-900 dark:text-white">
                 PWA Ready
@@ -284,7 +234,7 @@ const About = () => {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Progressive web app
               </p>
-            </div>
+            </div> */}
             <div>
               <div className="text-4xl mb-2">🔒</div>
               <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -330,7 +280,7 @@ const About = () => {
             View on GitHub
           </a>
           <Link
-            to="/utilities"
+            to="/"
             className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Start Using Tools
