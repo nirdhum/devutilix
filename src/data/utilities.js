@@ -230,8 +230,23 @@ export const utilities = [
   category: 'Images',
   tags: ['image', 'optimizer', 'compress', 'resize', 'quality', 'jpeg', 'png', 'webp'],
   component: 'ImageOptimizer'
+},
+{
+  id: 'scientific-calculator',
+  title: 'Scientific Calculator',
+  description: 'Advanced mathematical calculator with scientific functions, unit conversions, and expression evaluation',
+  category: 'Math',
+  tags: ['calculator', 'math', 'scientific', 'functions', 'trigonometry', 'logarithm', 'statistics'],
+  component: 'ScientificCalculator'
+},
+{
+  id: 'ascii-art-generator',
+  title: 'ASCII Art Generator',
+  description: 'Convert text and images to ASCII art with customizable fonts, styles, and character sets',
+  category: 'Generation',
+  tags: ['ascii', 'art', 'text', 'generator', 'convert', 'banner', 'font'],
+  component: 'ASCIIArtGenerator'
 }
-
 
 ];
 
