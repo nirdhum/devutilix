@@ -207,7 +207,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-4xl mb-2">⚛️</div>
               <h3 className="font-semibold text-gray-900 dark:text-white">
