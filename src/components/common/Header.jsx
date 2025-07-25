@@ -68,13 +68,13 @@ const Header = () => {
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-4">
               <div
-                className="flex items-center space-x-0 "
+                className="flex items-center space-x-1 "
                 // onClick={handleLogoClick}
               >
                 <div className="w-10 h-10 flex items-center justify-center">
                   <img
-                    src="/Veridicus.svg"
-                    alt="Dev Utilities Logo"
+                    src="/Logo_devutilix-by Veridicus Lab.svg"
+                    alt="DevutiliX Logo"
                     className="w-10 h-10 object-contain"
                   />
                 </div>
