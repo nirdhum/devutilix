@@ -11,7 +11,7 @@ export const useSEO = ({
   ogType = 'website'
 }) => {
   useEffect(() => {
-    const baseUrl = "https://dev-utilities.nirdhum.in"; // Replace with your domain
+    const baseUrl = "https://devutilix.com/";
     
     // Update title
     if (title) {
