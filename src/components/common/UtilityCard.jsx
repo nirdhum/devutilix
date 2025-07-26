@@ -1,6 +1,8 @@
-const UtilityCard = ({ utility, onClick }) => {
-  // Removed isRecent prop
-  const getCategoryColor = (category) => {
+import { memo, useMemo, useCallback } from "react";
+
+const UtilityCard = memo(({ utility, onClick }) => {
+  // ✅ Memoize category color calculation to prevent recalculation
+  const categoryColor = useMemo(() => {
     const colors = {
       Data: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
       Web: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
@@ -18,14 +20,17 @@ const UtilityCard = ({ utility, onClick }) => {
       Math: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
       Color: "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300",
       DevOps: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
+      "Text Processing":
+        "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
     };
     return (
-      colors[category] ||
+      colors[utility.category] ||
       "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
     );
-  };
+  }, [utility.category]);
 
-  const getCategoryIcon = (category) => {
+  // ✅ Memoize category icon to prevent re-creation
+  const categoryIcon = useMemo(() => {
     const icons = {
       Data: (
         <svg
@@ -207,9 +212,40 @@ const UtilityCard = ({ utility, onClick }) => {
           />
         </svg>
       ),
+      "Text Processing": (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h7"
+          />
+        </svg>
+      ),
     };
-    return icons[category] || icons["Development"];
-  };
+    return icons[utility.category] || icons["Development"];
+  }, [utility.category]);
+
+  // ✅ Memoize tags to prevent array operations on every render
+  const displayTags = useMemo(() => {
+    return utility.tags?.slice(0, 2) || [];
+  }, [utility.tags]);
+
+  // ✅ Memoize keyboard handler to prevent function recreation
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick();
+      }
+    },
+    [onClick]
+  );
 
   return (
     <div
@@ -223,18 +259,11 @@ const UtilityCard = ({ utility, onClick }) => {
       "
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
+      onKeyDown={handleKeyDown}
     >
       {/* Category Icon */}
       <div className="flex items-center justify-between mb-4">
-        <div className={`p-2 rounded-lg ${getCategoryColor(utility.category)}`}>
-          {getCategoryIcon(utility.category)}
-        </div>
+        <div className={`p-2 rounded-lg ${categoryColor}`}>{categoryIcon}</div>
         <svg
           className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors"
           fill="none"
@@ -263,16 +292,14 @@ const UtilityCard = ({ utility, onClick }) => {
       {/* Category Badge */}
       <div className="flex items-center justify-between">
         <span
-          className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(
-            utility.category
-          )}`}
+          className={`px-2 py-1 text-xs font-medium rounded-full ${categoryColor}`}
         >
           {utility.category}
         </span>
 
         {/* Popular Tags */}
         <div className="flex gap-1">
-          {utility.tags?.slice(0, 2).map((tag) => (
+          {displayTags.map((tag) => (
             <span
               key={tag}
               className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded"
@@ -284,6 +311,9 @@ const UtilityCard = ({ utility, onClick }) => {
       </div>
     </div>
   );
-};
+});
+
+// ✅ Add display name for debugging
+UtilityCard.displayName = "UtilityCard";
 
 export default UtilityCard;

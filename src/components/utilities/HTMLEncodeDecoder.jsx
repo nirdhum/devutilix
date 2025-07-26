@@ -234,24 +234,55 @@ const HTMLEncodeDecoder = () => {
           </div>
         </div>
 
-        {/* Encoding Type (only for encode mode) */}
+        {/* ✅ FIXED: Mobile-Responsive Encoding Type Dropdown */}
         {mode === "encode" && (
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Encoding Level
             </label>
-            <select
-              value={encodingType}
-              onChange={(e) => setEncodingType(e.target.value)}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="basic">
-                Basic HTML entities (XSS protection)
-              </option>
-              <option value="all">
-                Extended entities (includes special characters)
-              </option>
-            </select>
+            <div className="relative">
+              <select
+                value={encodingType}
+                onChange={(e) => setEncodingType(e.target.value)}
+                className="
+                  w-full px-3 py-2 pr-8 
+                  border border-gray-300 dark:border-gray-600 
+                  rounded-lg bg-white dark:bg-gray-700 
+                  text-gray-900 dark:text-white 
+                  text-sm
+                  focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                  appearance-none cursor-pointer
+                  max-w-full
+                "
+              >
+                <option value="basic">
+                  Basic HTML entities (XSS protection)
+                </option>
+                <option value="all">
+                  Extended entities (includes special characters)
+                </option>
+              </select>
+              {/* Custom dropdown arrow */}
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+            {/* ✅ ADDED: Helper text for mobile */}
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              Choose between basic XSS protection or extended character encoding
+            </p>
           </div>
         )}
 
@@ -273,29 +304,30 @@ const HTMLEncodeDecoder = () => {
           />
         </div>
 
-        {/* Controls */}
+        {/* ✅ IMPROVED: Mobile-Responsive Controls */}
         <div className="flex flex-wrap gap-2 mb-4">
           <button
             onClick={processInput}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 text-sm"
           >
             {mode === "encode" ? "Encode HTML" : "Decode HTML"}
           </button>
           <button
             onClick={swapMode}
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 text-sm"
           >
-            ⇄ Swap Mode
+            <span className="hidden sm:inline">⇄ Swap Mode</span>
+            <span className="sm:hidden">⇄</span>
           </button>
           <button
             onClick={loadSample}
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg focus:ring-2 focus:ring-green-500 text-sm"
           >
-            Load Sample
+            Sample
           </button>
           <button
             onClick={clearAll}
-            className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg focus:ring-2 focus:ring-gray-500"
+            className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg focus:ring-2 focus:ring-gray-500 text-sm"
           >
             Clear
           </button>
@@ -336,7 +368,7 @@ const HTMLEncodeDecoder = () => {
                   Preview (Rendered HTML)
                 </label>
                 <div
-                  className="p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+                  className="p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 break-words"
                   dangerouslySetInnerHTML={{ __html: output }}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -347,7 +379,7 @@ const HTMLEncodeDecoder = () => {
             )}
 
             {/* Statistics */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
               <div className="text-center">
                 <div className="text-lg font-semibold text-blue-600 dark:text-blue-400">
                   {input.length}
@@ -379,39 +411,46 @@ const HTMLEncodeDecoder = () => {
           </div>
         )}
 
-        {/* Common HTML Entities Reference */}
-        {/* Common HTML Entities Reference */}
+        {/* ✅ IMPROVED: Mobile-Responsive HTML Entities Reference */}
         <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <h4 className="font-medium text-blue-900 dark:text-blue-200 mb-3">
             Common HTML Entities
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-300">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-300">
             <div className="space-y-1">
-              <div>
-                <code>&lt;</code> ← Less than {"(<)"}
+              <div className="flex justify-between">
+                <code>&lt;</code>{" "}
+                <span className="text-xs">Less than {"(<)"}</span>
               </div>
-              <div>
-                <code>&gt;</code> ← Greater than {"(>)"}
+              <div className="flex justify-between">
+                <code>&gt;</code>{" "}
+                <span className="text-xs">Greater than {"(>)"}</span>
               </div>
-              <div>
-                <code>&amp;</code> ← Ampersand {"(&)"}
+              <div className="flex justify-between">
+                <code>&amp;</code>{" "}
+                <span className="text-xs">Ampersand {"(&)"}</span>
               </div>
-              <div>
-                <code>&quot;</code> ← Double quote {'(")'}
+              <div className="flex justify-between">
+                <code>&quot;</code>{" "}
+                <span className="text-xs">Double quote {'(")'}</span>
               </div>
             </div>
             <div className="space-y-1">
-              <div>
-                <code>&#x27;</code> ← Single quote {"(')"}
+              <div className="flex justify-between">
+                <code>&#x27;</code>{" "}
+                <span className="text-xs">Single quote {"(')"}</span>
               </div>
-              <div>
-                <code>&#x2F;</code> ← Forward slash {"(/)"}
+              <div className="flex justify-between">
+                <code>&#x2F;</code>{" "}
+                <span className="text-xs">Forward slash {"(/)"}</span>
               </div>
-              <div>
-                <code>&nbsp;</code> ← Non-breaking space
+              <div className="flex justify-between">
+                <code>&nbsp;</code>{" "}
+                <span className="text-xs">Non-breaking space</span>
               </div>
-              <div>
-                <code>&copy;</code> ← Copyright {"(©)"}
+              <div className="flex justify-between">
+                <code>&copy;</code>{" "}
+                <span className="text-xs">Copyright {"(©)"}</span>
               </div>
             </div>
           </div>
