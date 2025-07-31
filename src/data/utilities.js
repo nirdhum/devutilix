@@ -246,7 +246,16 @@ export const utilities = [
   category: 'Generation',
   tags: ['ascii', 'art', 'text', 'generator', 'convert', 'banner', 'font'],
   component: 'ASCIIArtGenerator'
-}
+},
+{
+  id: 'text-diff',
+  title: 'Text Diff Checker',
+  description: 'Compare two texts side-by-side to see differences.',
+  category: 'Development',
+  tags: ['diff', 'text', 'compare', 'code', 'comparison'],
+  component: 'TextDiffChecker',
+},
+
 
 ];
 
