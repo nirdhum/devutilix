@@ -223,7 +223,6 @@ export default function PaletteExtractor() {
             Analyzed Image
           </span>
           <div className="w-full h-64 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageSrc}
               alt="Uploaded Preview"

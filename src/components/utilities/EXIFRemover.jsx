@@ -248,7 +248,6 @@ export default function EXIFRemover() {
                 Visual Inspection Viewport
               </span>
               <div className="max-h-96 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={previewUrl}
                   alt="Uploaded preview"

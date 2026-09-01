@@ -160,7 +160,6 @@ export default function FaviconGenerator() {
           </h2>
 
           <div className="w-32 h-32 mx-auto rounded-2xl p-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={imageSrc} alt="Master Logo" className="w-full h-full object-contain rounded-xl" />
           </div>
 
@@ -227,7 +226,6 @@ export default function FaviconGenerator() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center p-1">
                       {generatedUrls[item.size] && (
-                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={generatedUrls[item.size]}
                           alt={item.name}
