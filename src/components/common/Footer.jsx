@@ -119,7 +119,7 @@ export default function Footer() {
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[11px] sm:text-xs">
             <a
-              href="https://github.com/nirdhum"
+              href="https://github.com/nirdhum/devutilix"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-900 dark:hover:text-white transition-colors"

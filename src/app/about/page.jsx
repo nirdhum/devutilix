@@ -318,7 +318,7 @@ export default function AboutPage() {
           Contributions and suggestions are always welcome.
         </p>
         <a
-          href="https://github.com/nirdhum"
+          href="https://github.com/nirdhum/devutilix"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold text-xs sm:text-sm rounded-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm"

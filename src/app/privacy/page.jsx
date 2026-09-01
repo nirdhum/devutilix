@@ -136,7 +136,7 @@ export default function PrivacyPolicyPage() {
             <p>
               Don&apos;t just take our word for it. All DevutiliX source code is publicly accessible and transparent. You can inspect the network tab in your browser&apos;s developer tools or review the open codebase on{" "}
               <a
-                href="https://github.com/nirdhum"
+                href="https://github.com/nirdhum/devutilix"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
