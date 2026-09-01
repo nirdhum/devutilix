@@ -1,0 +1,357 @@
+"use client";
+
+import { memo, useMemo, useCallback } from "react";
+import Link from "next/link";
+import { useFavorites } from "../../context/FavoritesContext";
+import { StarIcon } from "./Icons";
+
+const UtilityCard = memo(({ utility, onClick }) => {
+  // ✅ Memoize category color calculation to prevent recalculation
+  const categoryColor = useMemo(() => {
+    const colors = {
+      Data: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+      Web: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+      Security: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+      Images:
+        "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+      CSS: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
+      Time: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+      Encoding:
+        "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
+      Generation:
+        "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300",
+      Development:
+        "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+      Math: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+      Color: "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300",
+      DevOps: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
+      "Text Processing":
+        "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300",
+    };
+    return (
+      colors[utility.category] ||
+      "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+    );
+  }, [utility.category]);
+
+  // ✅ Memoize category icon to prevent re-creation
+  const categoryIcon = useMemo(() => {
+    const icons = {
+      Data: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      ),
+      Web: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9-9a9 9 0 00-9 9m9 9c0-5.185 3.373-9.678 8-11"
+          />
+        </svg>
+      ),
+      Security: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+          />
+        </svg>
+      ),
+      Images: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+      ),
+      CSS: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
+          />
+        </svg>
+      ),
+      Time: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      ),
+      Encoding: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
+        </svg>
+      ),
+      Generation: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
+        </svg>
+      ),
+      Development: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
+        </svg>
+      ),
+      Math: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+          />
+        </svg>
+      ),
+      Color: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
+          />
+        </svg>
+      ),
+      DevOps: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+          />
+        </svg>
+      ),
+      "Text Processing": (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h7"
+          />
+        </svg>
+      ),
+    };
+    return icons[utility.category] || icons["Development"];
+  }, [utility.category]);
+
+  // ✅ Memoize tags to prevent array operations on every render
+  const displayTags = useMemo(() => {
+    return utility.tags?.slice(0, 2) || [];
+  }, [utility.tags]);
+
+  // ✅ Memoize keyboard handler to prevent function recreation
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick();
+      }
+    },
+    [onClick]
+  );
+
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const starred = isFavorite(utility.id);
+
+  const handleToggleStar = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(utility.id);
+  };
+
+  return (
+    <Link
+      href={`/utility/${utility.id}`}
+      onClick={onClick}
+      className="
+        group relative flex flex-col justify-between bg-white dark:bg-gray-800 rounded-2xl shadow-xs border border-gray-200 dark:border-gray-700
+        hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 hover:border-blue-400/60 dark:hover:border-blue-500/60
+        cursor-pointer transition-all duration-200 p-4 sm:p-5 lg:p-6
+        hover:-translate-y-0.5 active:scale-[0.99]
+        focus:ring-2 focus:ring-blue-500 focus:outline-none
+      "
+    >
+      <div>
+        {/* Category Icon & Favorite Star */}
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <div className={`p-2 sm:p-2.5 rounded-xl ${categoryColor} flex items-center justify-center`}>
+            {categoryIcon}
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button
+              onClick={handleToggleStar}
+              title={starred ? "Remove from Pinned" : "Pin to Favorites"}
+              className={`p-2 rounded-lg transition-all cursor-pointer ${
+                starred
+                  ? "text-amber-500 bg-amber-50 dark:bg-amber-950/40 opacity-100"
+                  : "text-gray-400 hover:text-amber-500 hover:bg-gray-100 dark:hover:bg-gray-700 opacity-80 sm:opacity-0 group-hover:opacity-100 focus:opacity-100"
+              }`}
+            >
+              <StarIcon
+                filled={starred}
+                className={`w-3.5 h-3.5 ${
+                  starred ? "text-amber-500" : "text-gray-400 group-hover:text-gray-500"
+                }`}
+              />
+            </button>
+
+            <div className="p-1 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="font-bold text-gray-900 dark:text-white mb-1.5 sm:mb-2 text-base sm:text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+          {utility.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 leading-relaxed">
+          {utility.description}
+        </p>
+      </div>
+
+      {/* Category Badge & Tags */}
+      <div className="flex flex-wrap items-center justify-between gap-1.5 pt-2 border-t border-gray-100 dark:border-gray-700/50 mt-1">
+        <span
+          className={`px-2 py-0.5 text-[11px] font-semibold rounded-full ${categoryColor}`}
+        >
+          {utility.category}
+        </span>
+
+        {/* Popular Tags */}
+        <div className="flex flex-wrap gap-1">
+          {displayTags.map((tag) => (
+            <span
+              key={tag}
+              className="px-1.5 py-0.5 text-[10px] bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-md font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+});
+
+// ✅ Add display name for debugging
+UtilityCard.displayName = "UtilityCard";
+
+export default UtilityCard;
