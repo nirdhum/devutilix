@@ -62,6 +62,22 @@ export default function Footer() {
               >
                 Privacy Policy
               </Link>
+              <a
+                href="/sitemap.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-0.5"
+              >
+                Sitemap (XML)
+              </a>
+              <a
+                href="/llms.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-0.5"
+              >
+                LLMs.txt (AI Spec)
+              </a>
               <button
                 onClick={openCommandPalette}
                 className="text-left text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer py-0.5"
